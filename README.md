@@ -14,4 +14,5 @@ The main goal of this project is to study software architecture concepts.
 
 ## Run locally
 Run cucumber tests with `./gradlew cucumber`.
+
 Test scenarios can be read [here](/src/test/resources/features/move_funds.feature).
