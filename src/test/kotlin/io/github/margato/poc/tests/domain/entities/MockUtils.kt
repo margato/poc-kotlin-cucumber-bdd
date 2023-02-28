@@ -1,4 +1,4 @@
-package io.github.margato.poc.tests.application.entities
+package io.github.margato.poc.tests.domain.entities
 
 import java.math.BigDecimal
 import java.util.*

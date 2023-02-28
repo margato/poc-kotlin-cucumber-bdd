@@ -1,10 +1,10 @@
-package io.github.margato.poc.tests.application.entities
+package io.github.margato.poc.tests.domain.entities
 
 import com.github.michaelbull.result.*
-import io.github.margato.poc.tests.application.commands.base.CommandError
-import io.github.margato.poc.tests.application.commands.errors.InactiveAccountCommandError
-import io.github.margato.poc.tests.application.commands.errors.InsufficientFundCommandError
-import io.github.margato.poc.tests.application.exceptions.InvalidAccountOperationException
+import io.github.margato.poc.tests.domain.commands.base.CommandError
+import io.github.margato.poc.tests.domain.commands.errors.InactiveAccountCommandError
+import io.github.margato.poc.tests.domain.commands.errors.InsufficientFundCommandError
+import io.github.margato.poc.tests.domain.exceptions.InvalidAccountOperationException
 import java.math.BigDecimal
 import java.time.ZonedDateTime
 import java.util.*

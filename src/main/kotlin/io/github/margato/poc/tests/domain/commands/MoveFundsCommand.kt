@@ -1,6 +1,6 @@
-package io.github.margato.poc.tests.application.commands
+package io.github.margato.poc.tests.domain.commands
 
-import io.github.margato.poc.tests.application.commands.base.Command
+import io.github.margato.poc.tests.domain.commands.base.Command
 import java.math.BigDecimal
 
 data class MoveFundsCommand(

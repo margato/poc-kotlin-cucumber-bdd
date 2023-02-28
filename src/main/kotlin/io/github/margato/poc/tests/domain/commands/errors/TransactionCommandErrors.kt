@@ -1,6 +1,6 @@
-package io.github.margato.poc.tests.application.commands.errors
+package io.github.margato.poc.tests.domain.commands.errors
 
-import io.github.margato.poc.tests.application.commands.base.CommandError
+import io.github.margato.poc.tests.domain.commands.base.CommandError
 
 data class InsufficientFundCommandError(val accountId: String) :
     CommandError("400-001", "Account $accountId does not have enough funds")

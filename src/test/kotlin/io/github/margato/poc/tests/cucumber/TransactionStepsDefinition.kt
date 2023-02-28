@@ -4,9 +4,9 @@ import io.cucumber.java.Before
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
-import io.github.margato.poc.tests.application.entities.Account
-import io.github.margato.poc.tests.application.entities.MockUtils.mockAccount
-import io.github.margato.poc.tests.application.entities.Transaction
+import io.github.margato.poc.tests.domain.entities.Account
+import io.github.margato.poc.tests.domain.entities.MockUtils.mockAccount
+import io.github.margato.poc.tests.domain.entities.Transaction
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertNull
 import java.math.BigDecimal
