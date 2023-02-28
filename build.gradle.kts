@@ -1,5 +1,5 @@
 version = "0.1"
-group = "io.github.margato.orders"
+group = "io.github.margato.poc.tests"
 
 val kotlinVersion = project.properties["kotlinVersion"]
 repositories {
@@ -76,7 +76,7 @@ tasks.jacocoTestReport {
 
 
 application {
-    mainClass.set("io.github.margato.orders.ApplicationKt")
+    mainClass.set("io.github.margato.poc.tests.ApplicationKt")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
@@ -101,7 +101,7 @@ micronaut {
     testRuntime("kotest")
     processing {
         incremental(true)
-        annotations("io.github.margato.orders.*")
+        annotations("io.github.margato.poc.tests.*")
     }
 }
 
