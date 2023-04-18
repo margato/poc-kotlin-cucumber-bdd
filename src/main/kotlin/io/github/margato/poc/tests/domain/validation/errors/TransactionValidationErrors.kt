@@ -13,4 +13,4 @@ data class InactiveAccountError(val accountId: String) :
     Error("400-002", "Account $accountId is not active")
 
 data class ReceiverIsSenderError(val accountId: String) :
-    Error("400-002", "Account $accountId cannot send money to itself")
+    Error("400-003", "Account $accountId cannot send money to itself")

@@ -9,7 +9,6 @@ The main goal of this project is to study software architecture concepts.
 - Cucumber
 
 ### Concepts Applied
-- Hexagonal architecture
 - BDD 
 
 ## Run locally
