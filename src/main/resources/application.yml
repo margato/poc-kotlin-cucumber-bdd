@@ -1,7 +1,0 @@
-micronaut:
-  application:
-    name: poc-tests
-netty:
-  default:
-    allocator:
-      max-order: 3

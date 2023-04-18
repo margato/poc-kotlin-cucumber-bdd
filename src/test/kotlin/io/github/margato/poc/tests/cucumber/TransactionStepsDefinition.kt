@@ -5,57 +5,66 @@ import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import io.github.margato.poc.tests.domain.entities.Account
-import io.github.margato.poc.tests.domain.entities.MockUtils.mockAccount
 import io.github.margato.poc.tests.domain.entities.Transaction
-import org.junit.jupiter.api.Assertions.assertNotNull
-import org.junit.jupiter.api.Assertions.assertNull
-import java.math.BigDecimal
+import org.junit.jupiter.api.Assertions.*
 
 class TransactionStepsDefinition {
-    private var accounts: MutableMap<String, Account> = mutableMapOf()
-    private var transaction: Transaction? = null
+    private val scenarioState = mutableMapOf<String, Any>()
 
     @Before
-    fun beforeEachScenario() {
-        accounts.clear()
-        transaction = null
+    fun before() {
+        scenarioState.remove("transaction-exception")
+        scenarioState.remove("transaction")
     }
 
-    @Given("an account with id {string} and balance of {double}")
-    fun an_account_with_id_and_balance_of(id: String, amount: Double) {
-        accounts[id] = mockAccount(id, true, amount)
+    @Given("an account with id {string} with balance of {double}")
+    fun an_account_with_id(id: String, balance: Double) {
+        val account = Account(
+            id = id,
+            branchId = "1500",
+            balance = balance.toBigDecimal()
+        )
+
+        AccountTestRepository.add(account)
     }
 
-    @Given("account {string} is {string}")
-    fun account_tries_to_send_to_account(id: String, status: String) {
-        when (status) {
-            "active" -> { accounts[id]?.active = true }
-            "inactive" -> { accounts[id]?.active = false }
-            else -> { accounts[id]?.active = false }
-        }
-    }
-
-    @When("account {string} tries to send {double} to account {string}")
-    fun account_tries_to_send_to_account(fromAccountId: String, amount: Double, toAccountId: String) {
-        runCatching {
-            transaction = Transaction(
-                accounts[fromAccountId]!!,
-                accounts[toAccountId]!!,
-                BigDecimal(amount)
+    @Given("an account with id {string}")
+    fun an_account_with_id(id: String) {
+        if (!AccountTestRepository.contains(id))
+            AccountTestRepository.add(
+                Account(
+                    id = id,
+                    branchId = "1500"
+                )
             )
-        }.onFailure {
-            transaction = null
+    }
+
+    @When("account {string} sends {double} to account {string}")
+    fun account_sends_to_account(sender: String, value: Double, receiver: String) =
+        runCatching {
+            Transaction(
+                from = AccountTestRepository.get(sender)!!,
+                to = AccountTestRepository.get(receiver)!!,
+                value = value.toBigDecimal(),
+            )
+        }.onFailure { ex ->
+            scenarioState["transaction-exception"] = ex
+        }.onSuccess { transaction ->
+            scenarioState["transaction"] = transaction
         }
+
+    @Then("the transaction is made")
+    fun the_transaction_is_made() {
+        assertTrue(scenarioState.containsKey("transaction"))
     }
 
-    @Then("the transaction can be made")
-    fun the_transaction_can_be_made() {
-        assertNotNull(transaction)
+    @Then("the transaction is not made")
+    fun the_transaction_is_not_made() {
+        assertFalse(scenarioState.containsKey("transaction"))
     }
 
-    @Then("the transaction can not be made")
-    fun the_transaction_can_not_be_made() {
-        assertNull(transaction)
+    @Then("account {string} balance is {double}")
+    fun account_balance_is(id: String, balance: Double) {
+        assertEquals(balance.toBigDecimal(), AccountTestRepository.get(id)!!.getBalance())
     }
-
 }

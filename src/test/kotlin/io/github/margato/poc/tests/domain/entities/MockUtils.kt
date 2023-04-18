@@ -5,7 +5,7 @@ import java.util.*
 
 object MockUtils {
 
-    fun mockAccount(id: String?, active: Boolean, balance: Double): Account {
+    fun mockAccount(id: String?, active: Boolean = true, balance: Double): Account {
         return Account(
             id = id ?: UUID.randomUUID().toString(),
             branchId = UUID.randomUUID().toString(),
