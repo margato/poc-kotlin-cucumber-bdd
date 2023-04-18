@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import io.github.margato.poc.tests.domain.entities.Account
 import io.github.margato.poc.tests.domain.entities.Transaction
+import io.github.margato.poc.tests.state.AccountTestRepository
 import org.junit.jupiter.api.Assertions.*
 
 class TransactionStepsDefinition {

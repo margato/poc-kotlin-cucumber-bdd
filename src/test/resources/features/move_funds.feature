@@ -1,4 +1,4 @@
-Feature: Sequential: Move funds between accounts
+Feature: Move funds between accounts
 
   Scenario: Person A sends 1 dollar to Person B and remains with 1 dollar
     Given an account with id "123" with balance of 3.0

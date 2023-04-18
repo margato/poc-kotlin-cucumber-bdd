@@ -1,4 +1,4 @@
-package io.github.margato.poc.tests.cucumber
+package io.github.margato.poc.tests.state
 
 import io.github.margato.poc.tests.domain.entities.Account
 
